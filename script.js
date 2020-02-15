@@ -3,7 +3,7 @@ window.onload = function () {
 
     try {
 
-        const Http = new XMLHttpRequest();
+        let datas = [];
         const url = 'https://sia.unram.ac.id/___zaf/scholar-grab/store.php';
 
         const _users = document.getElementsByClassName('gsc_1usr');
@@ -19,10 +19,14 @@ window.onload = function () {
                 _label += (j > 0 ? ', ' : '') + _labels[j].innerText;
 
             // console.log(_url, _name, _cited, _affiliation, _label);
-
-            Http.open('POST', url);
-            Http.send(JSON.stringify([_url, _name, _affiliation, _cited, _label]));
+            datas.push([_url, _name, _affiliation, _cited, _label]);
         }
+
+        // console.log(datas);
+
+        const Http = new XMLHttpRequest();
+        Http.open('POST', url);
+        Http.send(JSON.stringify(datas));
 
         setInterval(function () {
             document.querySelector('button[aria-label="Next"]').click();
