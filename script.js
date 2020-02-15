@@ -6,8 +6,6 @@ window.onload = function () {
         const Http = new XMLHttpRequest();
         const url = 'https://sia.unram.ac.id/___zaf/scholar-grab/store.php';
 
-        Http.open('POST', url);
-
         const _users = document.getElementsByClassName('gsc_1usr');
         for (let i = 0; i < _users.length; i++) {
             let _user = _users[i];
@@ -21,6 +19,8 @@ window.onload = function () {
                 _label += (j > 0 ? ', ' : '') + _labels[j].innerText;
 
             // console.log(_url, _name, _cited, _affiliation, _label);
+
+            Http.open('POST', url);
             Http.send(JSON.stringify([_url, _name, _affiliation, _cited, _label]));
         }
 
