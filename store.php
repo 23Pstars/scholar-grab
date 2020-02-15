@@ -9,7 +9,8 @@ header('Access-Control-Allow-Origin: *');
 $data = json_decode(file_get_contents("php://input"));
 
 foreach($data as $d){
-    $insert = $pdo->prepare('INSERT INTO `' . TABLE . '` VALUES (?, ?, ?, ?, ?, NULL)');
+    $d[] = date('Y-m-d H:i:s');
+    $insert = $pdo->prepare('INSERT INTO `' . TABLE . '` VALUES (?, ?, ?, ?, ?, ?)');
     $insert->execute($d);
 }
 
